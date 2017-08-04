@@ -1,0 +1,38 @@
+- apt_repository:
+    repo: deb http://pkg.ci.collectd.org/deb xenial master
+    state: present
+  become: yes
+
+- apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 3994D24FB8543576
+    state: present
+  become: yes
+
+- apt_repository:
+    repo: deb https://packagecloud.io/grafana/stable/debian/ jessie main
+    state: present
+  become: yes
+
+- apt_key:
+    url: "https://packagecloud.io/gpg.key"
+    state: present
+  become: yes
+
+- apt:
+    deb: https://dl.influxdata.com/influxdb/releases/influxdb_1.3.1_amd64.deb
+  become: yes
+
+- apt:
+    name: collectd
+    update_cache: yes
+    state: present
+  become: yes
+
+- apt:
+    name: grafana
+    update_cache: no
+    state: present
+  become: yes
+
+
